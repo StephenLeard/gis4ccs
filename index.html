@@ -1,227 +1,460 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>GIS for Citizen Science 1/3</title>
-		<meta name="description" content="">
-		<meta name="author" content="Stephen Leard">
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-		<!--Icons-->
-			<link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTYzMDhBMDk1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTYzMDhBMEE1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBNjMwOEEwNzU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBNjMwOEEwODU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvW2ukoAAAExSURBVHjajNJPSgMxFMfxyVCL9AJViqIVuhNEceEhxD9YELv0GC4t9Ab1BoIIFkUX4k4poitd6KJIr+DOjej4DfxS0pDOGPgwbV7ey5tJkizLEouxiJWkeCyj7vJSLzCDvX8UaGJ29M/rYBpdrOYk2w5PUBnleQXsqOICW5HkTfTc7pMK2LGNPow3Z3/fYzfsPI3s9KlO0qBAVbGxESswh0v8eHO/mpsPFxvXvjFmh8c3FrCPDxzZbtFGA2cYokxeLzyFRy0e4FAf7BUvuNLcQGueYh/xWMFMCXWcypIKungnVqCGB3zhRl99KHb+WjF7QrVJxzil3dbw5u34jnXFykX3wJ3OAZ6lhZK/oKiAO/tb3AWXaqxAKefe26RzPY1eJcm7B7ECG3qdfljA5f0JMAAl8rzP4xqFlQAAAABJRU5ErkJggg==">
-			<link rel="shortcut icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTYzMDhBMDk1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTYzMDhBMEE1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBNjMwOEEwNzU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBNjMwOEEwODU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvW2ukoAAAExSURBVHjajNJPSgMxFMfxyVCL9AJViqIVuhNEceEhxD9YELv0GC4t9Ab1BoIIFkUX4k4poitd6KJIr+DOjej4DfxS0pDOGPgwbV7ey5tJkizLEouxiJWkeCyj7vJSLzCDvX8UaGJ29M/rYBpdrOYk2w5PUBnleQXsqOICW5HkTfTc7pMK2LGNPow3Z3/fYzfsPI3s9KlO0qBAVbGxESswh0v8eHO/mpsPFxvXvjFmh8c3FrCPDxzZbtFGA2cYokxeLzyFRy0e4FAf7BUvuNLcQGueYh/xWMFMCXWcypIKungnVqCGB3zhRl99KHb+WjF7QrVJxzil3dbw5u34jnXFykX3wJ3OAZ6lhZK/oKiAO/tb3AWXaqxAKefe26RzPY1eJcm7B7ECG3qdfljA5f0JMAAl8rzP4xqFlQAAAABJRU5ErkJggg==">
-		<link rel="stylesheet" href="lib/reveal.js/css/reveal.css">
-		<link rel="stylesheet" href="lib/reveal.js/css/theme/sky.css" id="theme">
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/reveal.js/lib/css/zenburn.css">
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'lib/reveal.js/css/print/pdf.css' : 'lib/reveal.js/css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-		<style>
-			.overflow {
-				overflow: auto;
-				width: 100%;
-				height: 500px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="reveal">
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<section>
-						<h2>GIS for Citizen Science</h2>
-					</section>
-					<section>
-						<h2>Session 1</h2>
-						<h2>The evolving nature of maps</h2>
-					</section>
-				</section>
-				<section>
-				<section>
-					<h2>Welcome!</h2>
-				</section>
-				<section>
-					<h3>Quick get-to-know-you</h3>
-					<ul>
-						<li>Name</li>
-						<li>Major</li>
-						<li>Fun fact</li>
-						<li>Interest in KEYS 4021</li>
-					</ul>
-				</section>
-				</section>
-				<section>
-					<h2>What we'll cover</h2>
-					<ul>
-						<li>Maps and cartography</li>
-						<li>GIS and Citizen Science</li>
-						<li>Web map workflows</li>
-						<li>Data collection and project design</li>
-						<li>Introductory analysis and applications</li>
-						<li>Resources to find out more</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Maps and GIS</h2>
-					<ul>
-						<li><a href="http://www.icsm.gov.au/mapping/history.html" target="_blank">Mapping fundamentals</a></li>
-						<li>Applications to <a href="http://www.gislounge.com/conservation-biology-and-gis/" target="_blank">conservation</a> <a href="http://www.esf.edu/efb/gibbs/solving/v1.pdf" target="_blank">biology</a></li>
-						<li><a href="http://www.geog.ucsb.edu/~good/papers/474B.pdf" target="_blank">GIS vs cartography</a></li>
-					</ul>
-				</section>
-				<section>
-					<h2>The road here</h2>
-					<ul>
-						<li>History of mapping and conservation</li>
-						<li><a href="http://academic.emporia.edu/aberjame/map/h_map/h_map.htm" target="_blank">Brief history of mapping and cartography</a></li>
-						<li>TODO: Jack Dangermond presentation highlights</li>
-					</ul>
-				</section>
-				<section>
-				<section>
-					<h2>Geocoding</h2>
-					<h2>Coordinate systems</h2>
-				</section>
-					<section>
-						<h2>Geocoding</h2>
-						<h3>Turning addresses into coordinates</h3>
-					</section>
-					<section>
-						<h2>Coordinates</h2>
-						<h3>Latitude + Longitude</h3>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h2>Presenting context</h2>
-					</section>
-					<section>
-						<ul>
-							<li><a href="http://support.esri.com/en/knowledgebase/GISDictionary/term/projection" target="_blank">Projections</a></li>
-							<li><a href="http://support.esri.com/ja/knowledgebase/techarticles/detail/23025" target="_blank">Basics</a></li>
-							<li><a href="http://gis.stackexchange.com/questions/177369/creating-a-vector-tile-base-map" target="_blank">Vector data for tile maps</a></li>
-							<li><a href="http://gis.stackexchange.com/questions/57142/what-is-the-difference-between-vector-and-raster-data-models" target="_blank">Vector</a> vs <a href="http://www.gislounge.com/geodatabases-explored-vector-and-raster-data/" target="_blank">Raster</a></li>
-						</ul>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h2>Symbols</h2>
-						<h2>Stories</h2>
-					</section>
-					<section>
-						<ul>
-							<li><a href="http://www.colgate.edu/portaldata/imagegallerywww/9f6bbcda-184d-4f20-bf0f-05069a418363/ImageGallery/05_GEOG245_Tutorial3.pdf" target="_blank">Map symbology in ArcGIS</a></li>
-							<li><a href="http://gis.stackexchange.com/questions/3046/are-there-any-international-standards-for-map-symbology" target="_blank">Standards</a></li>
-							<li><a href="https://www.youtube.com/watch?v=ulXv1I8lJfA" target="_blank">Visualization techniques</a></li>
-						</ul>
-					</section>
-					<section>
-						<section>
-							<h2>Stories</h2>
-						</section>
-						<section>
-							<ul>
-								<li><a href="http://storymaps.arcgis.com/en/" target="_blank">Story maps</a></li>
-								<li><a href="http://storymaps.arcgis.com/en/app-list/" target="_blank">Options</a></li>
-								<li><a href="http://storymaps.arcgis.com/en/how-to/" target="_blank">How to make a story app</a></li>
-								<li><a href="http://storymaps.arcgis.com/en/five-principles/" target="_blank">Effective storytelling</a></li>								
-							</ul>
-						</section>
-					</section>
-				</section>
-				<section>
-					<h2>Map first data</h2>
-					<h2>Data first maps</h2>
-				</section>
-				<section>
-					<h2>Break</h2>
-				</section>
-				<section>
-					<h2><a href="http://www.arcgis.com/features/" target="_blank">ArcGIS</a></h2>
-				</section>
-				<section>
-					<h2><a href="http://www.qgis.org/en/site/" target="_blank">QGIS</a></h2>
-				</section>
-				<section>
-					<h2>Online tools</h2>
-					<ul>
-						<li><a href="https://cartodb.com/" target="_blank">CartoDB</a></li>
-						<li><a href="https://www.mapbox.com/" target="_blank">Mapbox</a></li>
-					</ul>
-				</section>
-				<section>
-					<h2>Additional tools</h2>
-					<ul>
-						<li><a href="http://leafletjs.com/" target="_blank">Leaflet</a></li>
-						<li><a href="http://spatialanalysis.co.uk/2010/09/rmaps/" target="_blank">R</a></li>
-					</ul>
-				</section>
-				<section>
-					<h2>Field tools</h2>
-					<ul>
-						<li><a href="http://survey123.esri.com/#/" target="_blank">Survey123</a></li>
-						<li><a href="http://doc.arcgis.com/en/collector/" target="_blank">Collector</a></li>
-						<li><a href="https://www.arcgis.com/home/item.html?id=931653256fd24301a84fc77955914a82" target="_blank">GeoForm</a></li>
-						<li><a href="http://geoodk.com/" target="_blank">GeoODK</a></li>
-					</ul>
-				</section>
-				<section>
-					<h2>Getting started</h2>
-				</section>
-				<section>
-					<h2>Next time</h2>
-					<ul>
-						<li>choose and complete a tutorial</li>
-						<li>Find and explore a conservation project that involves mapping or GIS</li>
-						<li>briefly describe an example topic you would like to map</li>
-						<li>add vacation spot to collab map with explanation</li>
-						<li>add research area to collab map with explanation</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Questions?</h2>
-					<ul>
-						<li></li>
-					</ul>
-				</section>
-			</div><!-- slides -->
-		</div><!-- reveal -->
-		<script src="lib/reveal.js/lib/js/head.min.js"></script>
-		<script src="lib/reveal.js/js/reveal.js"></script>
-		<script>
+<!doctype><html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Conservation + Citizen Science + MAPS</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+  <!--Icons-->
+      <link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAABXElEQVR42o2S3YqCcBDFfWmfojcIoqvewEDoIqirLirTyILys8IiKhMz+vCsZ3ZtY7eLBgb+6n9+c86MCoCcmWVZziifP02FRcfjEUmS4PF4gIzL5YLb7QZGmqb45r4PpSjKd7sdfN/Her0Gz1EU4Xw+436/43Q6CYBwgv/ClKJDbpomHMfBZDJBEASS7XYbo9EI/X4fh8MB2+0W+/1eoK8QsUC50+kU9Xodg8EAw+EQmqaJDdqzbRuLxQKe58k3Krxer78AdlytVmg0GqjVami1WjITdpvNZgKiBSqgxeVyCVVVRYkA+KLb7aJarUrxZrOB67rifzweiyUq45wIKzYmyQErXAVJzWZTLrLYMAzpTP+9Xk/sEFZGGIZiiTaUn32KBVLpkXIp37IsGSA7vw4ujmO5w/tPQOlT13Up4uDm8/nb9fFc5hNQRqfTQaVSkSF+Ev8A/IE+LWZ8AaLZ1qYtI8nBAAAAAElFTkSuQmCC">
+      <link rel="shortcut icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAABXElEQVR42o2S3YqCcBDFfWmfojcIoqvewEDoIqirLirTyILys8IiKhMz+vCsZ3ZtY7eLBgb+6n9+c86MCoCcmWVZziifP02FRcfjEUmS4PF4gIzL5YLb7QZGmqb45r4PpSjKd7sdfN/Her0Gz1EU4Xw+436/43Q6CYBwgv/ClKJDbpomHMfBZDJBEASS7XYbo9EI/X4fh8MB2+0W+/1eoK8QsUC50+kU9Xodg8EAw+EQmqaJDdqzbRuLxQKe58k3Krxer78AdlytVmg0GqjVami1WjITdpvNZgKiBSqgxeVyCVVVRYkA+KLb7aJarUrxZrOB67rifzweiyUq45wIKzYmyQErXAVJzWZTLrLYMAzpTP+9Xk/sEFZGGIZiiTaUn32KBVLpkXIp37IsGSA7vw4ujmO5w/tPQOlT13Up4uDm8/nb9fFc5hNQRqfTQaVSkSF+Ev8A/IE+LWZ8AaLZ1qYtI8nBAAAAAElFTkSuQmCC">
+    
+    <link rel="stylesheet" href="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/themes/css/cartodb.css">
+  <link rel="stylesheet" href="http://cartodb.github.io/odyssey.js/sandbox/css/slides.css">
+  <script src="http://cartodb.github.io/odyssey.js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+  <style>
+    #slides_container {background-color: rgba(255,255,255,0.9)!important;width: 480px!important;}
+    p {font-size: 24px!important;line-height: 32px!important;}
+  </style>
+  <div id="map" style="width: 100%; height: 100%;"></div>
 
-				transition: 'convex', // none/fade/slide/convex/concave/zoom
+  <div id="slides_container" style="display:block;">
+    <div id="dots"></div>
 
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'lib/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'lib/reveal.js/plugin/zoom-js/zoom.js', async: true },
-					{ src: 'lib/reveal.js/plugin/notes/notes.js', async: true }
-				]
-			});
-		</script>
-	</body>
-</html>
+    <div id="slides"></div>
+
+    <ul id="navButtons">
+      <li><a class="prev"></a></li>
+      <li><a class="next"></a></li>
+    </ul>
+  </div>
+
+  <div id="credits">
+    <span class="title" id="title">Title</span>
+    <span class="author"><strong id="author">By Name using</strong> <a href="http://cartodb.github.io/odyssey.js/">Odyssey.js</a><span>
+  </span></span></div>
+
+  <script src="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/cartodb.js"></script>
+  <script src="http://cartodb.github.io/odyssey.js/dist/odyssey.js" charset="UTF-8"></script>
+
+  <script>
+    var resizePID;
+
+    function clearResize() {
+      clearTimeout(resizePID);
+      resizePID = setTimeout(function() { adjustSlides(); }, 100);
+    }
+
+    if (!window.addEventListener) {
+      window.attachEvent("resize", function load(event) {
+        clearResize();
+      });
+    } else {
+      window.addEventListener("resize", function load(event) {
+        clearResize();
+      });
+    }
+
+    function adjustSlides() {
+      var container = document.getElementById("slides_container"),
+          slide = document.querySelectorAll('.selected_slide')[0];
+
+      if (slide) {
+        if (slide.offsetHeight+169+40+80 >= window.innerHeight) {
+          container.style.bottom = "80px";
+
+          var h = container.offsetHeight;
+
+          slide.style.height = h-169+"px";
+          slide.classList.add("scrolled");
+        } else {
+          container.style.bottom = "auto";
+          container.style.minHeight = "0";
+
+          slide.style.height = "auto";
+          slide.classList.remove("scrolled");
+        }
+      }
+    }
+
+    var resizeAction = O.Action(function() {
+      function imageLoaded() {
+        counter--;
+
+        if (counter === 0) {
+          adjustSlides();
+        }
+      }
+      var images = $('img');
+      var counter = images.length;
+
+      images.each(function() {
+        if (this.complete) {
+          imageLoaded.call( this );
+        } else {
+          $(this).one('load', imageLoaded);
+        }
+      });
+    });
+
+    function click(el) {
+      var element = O.Core.getElement(el);
+      var t = O.Trigger();
+
+      // TODO: clean properly
+      function click() {
+        t.trigger();
+      }
+
+      if (element) element.onclick = click;
+
+      return t;
+    }
+
+    O.Template({
+      init: function() {
+        var seq = O.Triggers.Sequential();
+
+        var baseurl = this.baseurl = 'http://{s}.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
+        var map = this.map = L.map('map').setView([0, 0.0], 4);
+        var basemap = this.basemap = L.tileLayer(baseurl, {
+          attribution: 'data OSM - map CartoDB'
+        }).addTo(map);
+
+        // enanle keys to move
+        O.Keys().on('map').left().then(seq.prev, seq)
+        O.Keys().on('map').right().then(seq.next, seq)
+
+        click(document.querySelectorAll('.next')).then(seq.next, seq)
+        click(document.querySelectorAll('.prev')).then(seq.prev, seq)
+
+        var slides = O.Actions.Slides('slides');
+        var story = O.Story()
+
+        this.story = story;
+        this.seq = seq;
+        this.slides = slides;
+        this.progress = O.UI.DotProgress('dots').count(0);
+      },
+
+      update: function(actions) {
+        var self = this;
+
+        if (!actions.length) return;
+
+        this.story.clear();
+
+        if (this.baseurl && (this.baseurl !== actions.global.baseurl)) {
+          this.baseurl = actions.global.baseurl || 'http://0.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
+
+          this.basemap.setUrl(this.baseurl);
+        }
+
+        if (this.cartoDBLayer && ("http://"+self.cartoDBLayer.options.user_name+".cartodb.com/api/v2/viz/"+self.cartoDBLayer.options.layer_definition.stat_tag+"/viz.json" !== actions.global.vizjson)) {
+          this.map.removeLayer(this.cartoDBLayer);
+
+          this.cartoDBLayer = null;
+          this.created = false;
+        }
+
+        if (actions.global.vizjson && !this.cartoDBLayer) {
+          if (!this.created) { // sendCode debounce < vis loader
+            cdb.vis.Loader.get(actions.global.vizjson, function(vizjson) {
+              self.map.fitBounds(vizjson.bounds);
+
+              cartodb.createLayer(self.map, vizjson)
+                .done(function(layer) {
+                  self.cartoDBLayer = layer;
+
+                  var sublayer = layer.getSubLayer(0),
+                      layer_name = layer.layers[0].options.layer_name,
+                      filter = actions.global.cartodb_filter ? " WHERE "+actions.global.cartodb_filter : "";
+
+                  sublayer.setSQL("SELECT * FROM "+layer_name+filter)
+
+                  self.map.addLayer(layer);
+
+                  self._resetActions(actions);
+                }).on('error', function(err) {
+                  console.log("some error occurred: " + err);
+                });
+            });
+
+            this.created = true;
+          }
+
+          return;
+        }
+
+        this._resetActions(actions);
+      },
+
+      _resetActions: function(actions) {
+        // update footer title and author
+        var title_ = actions.global.title === undefined ? '' : actions.global.title,
+            author_ = actions.global.author === undefined ? 'Using' : 'By '+actions.global.author+' using';
+
+        document.getElementById('title').innerHTML = title_;
+        document.getElementById('author').innerHTML = author_;
+        document.title = title_ + " | " + author_ +' Odyssey.js';
+
+        var sl = actions;
+
+        document.getElementById('slides').innerHTML = ''
+        this.progress.count(sl.length);
+
+        // create new story
+        for(var i = 0; i < sl.length; ++i) {
+          var slide = sl[i];
+          var tmpl = "<div class='slide' style='diplay:none'>";
+
+          tmpl += slide.html();
+          tmpl += "</div>";
+          document.getElementById('slides').innerHTML += tmpl;
+
+          this.progress.step(i).then(this.seq.step(i), this.seq)
+
+          var actions = O.Parallel(
+            this.slides.activate(i),
+            slide(this),
+            this.progress.activate(i),
+            resizeAction
+          );
+
+          actions.on("finish.app", function() {
+            adjustSlides();
+          });
+
+          this.story.addState(
+            this.seq.step(i),
+            actions
+          )
+        }
+
+        this.story.go(this.seq.current());
+      },
+
+      changeSlide: function(n) {
+        this.seq.current(n);
+      }
+    });
+  </script>
+
+<script id="md_template" type="text/template">```
+-baseurl:"http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"
+-title: "Conservation + Citizen Science + MAPS"
+-author: "Stephen, for MaptimeSTL"
+```
+# Conservation + Citizen Science + MAPS
+```
+- center: [38.630790, -90.199614]
+- zoom: 17
+L.marker([38.630790, -90.199614]).actions.addRemove(S.map)
+```
+- SOTMUS 2016   
+- Conservation + Examples   
+- Citizen Science + Examples   
+- Land Use and OSM   
+- CartoDB Community Lessons: **Odyssey.js** + **Tracking Seagulls**     
+- Resources   
+- Future topics
+
+# SOTMUS 2016
+```
+- center: [38.627656, -90.201949]
+- zoom: 16
+L.marker([38.627656, -90.201949]).actions.addRemove(S.map)
+```
+- Dates    
+- Venues    
+- Pricing    
+- Logistics    
+- Partnerships    
+- Events    
+
+# SOTMUS 2016
+```
+- center: [38.627656, -90.201951]
+- zoom: 15
+L.marker([38.627656, -90.201949]).actions.addRemove(S.map)
+```
+- Dates    
+- Venues    
+- Pricing    
+- Logistics    
+- Partnerships    
+- Events    
+- Team
+
+# Conservation + Citizen Science
+```
+- center: [-4.692925, 29.620091]
+- zoom: 5
+L.marker([-4.692925, 29.620091]).actions.addRemove(S.map)
+```
+ - [Jane Goodall](https://www.google.com/maps/about/behind-the-scenes/streetview/treks/gombe-tanzania/) says [GIS is great](http://video.esri.com/iframe/3662/000000/width/960/0/00:00:00)!   
+ - Understanding geography is key to protecting it   
+ - Observations at scale require observers at scale   
+[![Conservation Measures Partnership Open Standards](https://www.miradi.org/media/images/OS_V_3.0_with_title.focus-none.max-500x500.jpg)](http://www.conservationmeasures.org/)
+
+# [Whale mAPP](http://www.whalemapp.org/)
+```
+- center: [34.061494, -117.164511]
+- zoom: 6
+L.marker([34.061494, -117.164511]).actions.addRemove(S.map)
+```
+[Lightning Talk](http://video.esri.com/watch/3061/lightning-talkwhale-mapp-citizen-scientists-contribute-and-map-marine-mammal-sightings)
+
+# [FrogWatch](https://www.aza.org/frogwatch/)
+```
+- center: [38.634402, -90.291006]
+- zoom: 7
+L.marker([38.634402, -90.291006]).actions.addRemove(S.map)
+```
+[FieldScope](http://education.nationalgeographic.org/programs/fieldscope/)
+![Fieldscope](http://media.education.nationalgeographic.com/assets/photos/000/348/34851.jpg)
+
+# [iNaturalist](http://www.inaturalist.org/)
+```
+- center: [37.796041, -122.346850]
+- zoom: 8
+L.marker([37.796041, -122.346850]).actions.addRemove(S.map)
+```
+![Share with Fellow Naturalists](http://www.inaturalist.org/assets/homepage-how-share-5dd1b036e4a77767cff9d8f4b56ee390.svg)
+
+# [iMapInvasives](http://www.imapinvasives.org/)
+```
+- center: [42.652282, -73.748689]
+- zoom: 9
+L.marker([42.652282, -73.748689]).actions.addRemove(S.map)
+```
+See an invasive species -> Plot its location 
+Six types of data   
+    1. Observation - who, what, when, where   
+    2. Assessment - detailed information about an observation   
+    3. Survey - planned search of an area to determine presence or absence of specific invasive species    
+    4. Treatment - information about treatment   
+    5. Infestation - information about a population   
+    6. Project - a way to group data   
+
+# Land Cover + Land Use
+```
+- center: [40.804231, -77.857528]
+- zoom: 10
+L.marker([40.804231, -77.857528]).actions.addRemove(S.map)
+```
+- Land Cover: features that exist on the land's surface   
+- Land Use: socio-economic activity or function associated with an area of land   
+- Critical for conservation   
+- [National Databases available](http://www.mrlc.gov/)  
+
+# Open Street Map
+```
+- center: [30.989486, -43.387915]
+- zoom: 3
+```  
+- [Environmental OSM](http://wiki.openstreetmap.org/wiki/Environmental_OSM)      
+- [leisure=nature_reserve]   
+- [boundary=protected_area]   
+- [Proposed feature](http://wiki.openstreetmap.org/wiki/Talk:Proposal_process)/[conservation](http://wiki.openstreetmap.org/wiki/Talk:Proposed_features/conservation) (currently [inactive](http://wiki.openstreetmap.org/wiki/Proposed_features/conservation))   
+- Mapping [invasive non-native species](http://wiki.openstreetmap.org/wiki/Invasive_Non-Native_Species)
+
+# [Odyssey JS](http://cartodb.github.io/odyssey.js/)
+```
+- center: [40.414353, -3.706782]
+- zoom: 11
+L.marker([40.414353, -3.706782]).actions.addRemove(S.map)
+```
+"A simple way for journalists, designers, and creators to weave interactive stories."
+
+# Odyssey.js Demo + Tutorial
+```
+- center: [37.426483, -122.172863]
+- zoom: 16
+L.marker([37.426483, -122.172863]).actions.addRemove(S.map)
+```
+[Using CartoDB and Odyssey.js](http://mapninja.github.io/CartoDB_Odyssey_Tutorial_for_Story_Maps/) by Stace Maples at the Stanford Geospatial Center
+
+# Seagulls
+```
+- center: [50.842127, 4.334159]
+- zoom: 12
+L.marker([50.842127, 4.334159]).actions.addRemove(S.map)
+```
+ [Visualizing bird tracking data](http://lifewatch.inbo.be/blog/posts/cartodb-tracking-data-tutorial.html) with CartoDB
+
+# Learn more
+```
+- center: [38.6241, -90.1853]
+- zoom: 9
+```
+  - Lots of [cool](http://bl.ocks.org/anonymous/raw/7d67c4ef3348192da613/) [use](http://bl.ocks.org/anonymous/raw/769c7b6f9d7b4755d56a/) [cases](http://jonahadkins.github.io/virginia-beaches/)   
+  - Drop GA script tag and unnecessary links   
+  - Easy to customize (increase slide opacity and font size)
+
+# Resources
+```
+- center: [38.628010, -90.190185]
+- zoom: 10
+L.marker([38.628010, -90.190185]).actions.addRemove(S.map)
+```
+- [GIS Lounge](http://www.gislounge.com/conservation-biology-and-gis/)   
+- [Cool list from Yale blog](http://environment.yale.edu/blog/2014/12/20-new-and-powerful-conservation-tools/)   
+- [Conservation GIS](https://www.e-education.psu.edu/geog587/) from Penn State   
+- [Conservation GIS projects at the National Zoo](https://nationalzoo.si.edu/SCBI/ConservationGIS/projects/Smithsonian/GISprojects.cfm)   
+- [Society for Conservation GIS](https://www.scgis.org/)   
+- [UNEP World Conservation Monitoring Centre](http://www.unep-wcmc.org/featured-projects/mapping-the-worlds-special-places)   
+- [CartoDB’s Map Academy](http://academy.cartodb.com/)   
+- [Andrew Hill webinar](http://consbio.org/products/webinars/amazing-uses-cartodb)   
+- [ESRI’s Best Practices for Wildlife Conservation](http://www.esri.com/library/bestpractices/wildlife-conservation.pdf)   
+- [Maptime lessons and resources](http://maptime.io/lessons-resources/)   
+
+# Future Maptimes?
+```
+- center: [38.628840, -90.192502]
+- zoom: 12
+L.marker([38.628840, -90.192502]).actions.addRemove(S.map)
+```
+  - Map Accessibility Guidelines   
+  - FixWikiMaps   
+  - CartoCSS + the MapBoxSTL "gateway" theme   
+  - Turj.js and online geospatial analysis   
+  - Esri Story Maps   
+  - DIY Geo Apps and other ESRI Moocs   
+  - 3D maps - open source and otherwise   
+  - Rock the docs   
+  - Mapathons   
+  - Historic Maps   
+  - Social mapping   
+  - Maps for education   
+  - Maps and the census   
+  - Maps and GitHub - the making of maptime.io/maptimestl   
+  - Maps and games   
+  - Social network analysis and GIS   
+  - QGIS   
+  - Roadmap to OSM mastery   
+  - CartoDB Academy series   
+  - PostgreSQL + PostGIS
+
+# HAVE FUN!
+```
+- center: [40.414353, -3.706782]
+- zoom: 3
+L.marker([38.630790, -90.199614]).actions.addRemove(S.map)
+L.marker([38.627656, -90.201949]).actions.addRemove(S.map)
+L.marker([-4.692925, 29.620091]).actions.addRemove(S.map)
+L.marker([34.061494, -117.164511]).actions.addRemove(S.map)
+L.marker([38.634402, -90.291006]).actions.addRemove(S.map)
+L.marker([37.796041, -122.346850]).actions.addRemove(S.map)
+L.marker([42.652282, -73.748689]).actions.addRemove(S.map)
+L.marker([40.804231, -77.857528]).actions.addRemove(S.map)
+L.marker([40.414353, -3.706782]).actions.addRemove(S.map)
+L.marker([37.426483, -122.172863]).actions.addRemove(S.map)
+L.marker([50.842127, 4.334159]).actions.addRemove(S.map)
+L.marker([38.628010, -90.190185]).actions.addRemove(S.map)
+L.marker([38.628840, -90.192502]).actions.addRemove(S.map)
+```
+
+</script></body></html>
