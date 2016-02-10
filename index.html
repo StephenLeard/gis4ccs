@@ -4,11 +4,9 @@
   <title>Conservation + Citizen Science + MAPS</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <!--Icons-->
-      <link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAABXElEQVR42o2S3YqCcBDFfWmfojcIoqvewEDoIqirLirTyILys8IiKhMz+vCsZ3ZtY7eLBgb+6n9+c86MCoCcmWVZziifP02FRcfjEUmS4PF4gIzL5YLb7QZGmqb45r4PpSjKd7sdfN/Her0Gz1EU4Xw+436/43Q6CYBwgv/ClKJDbpomHMfBZDJBEASS7XYbo9EI/X4fh8MB2+0W+/1eoK8QsUC50+kU9Xodg8EAw+EQmqaJDdqzbRuLxQKe58k3Krxer78AdlytVmg0GqjVami1WjITdpvNZgKiBSqgxeVyCVVVRYkA+KLb7aJarUrxZrOB67rifzweiyUq45wIKzYmyQErXAVJzWZTLrLYMAzpTP+9Xk/sEFZGGIZiiTaUn32KBVLpkXIp37IsGSA7vw4ujmO5w/tPQOlT13Up4uDm8/nb9fFc5hNQRqfTQaVSkSF+Ev8A/IE+LWZ8AaLZ1qYtI8nBAAAAAElFTkSuQmCC">
-      <link rel="shortcut icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAABXElEQVR42o2S3YqCcBDFfWmfojcIoqvewEDoIqirLirTyILys8IiKhMz+vCsZ3ZtY7eLBgb+6n9+c86MCoCcmWVZziifP02FRcfjEUmS4PF4gIzL5YLb7QZGmqb45r4PpSjKd7sdfN/Her0Gz1EU4Xw+436/43Q6CYBwgv/ClKJDbpomHMfBZDJBEASS7XYbo9EI/X4fh8MB2+0W+/1eoK8QsUC50+kU9Xodg8EAw+EQmqaJDdqzbRuLxQKe58k3Krxer78AdlytVmg0GqjVami1WjITdpvNZgKiBSqgxeVyCVVVRYkA+KLb7aJarUrxZrOB67rifzweiyUq45wIKzYmyQErXAVJzWZTLrLYMAzpTP+9Xk/sEFZGGIZiiTaUn32KBVLpkXIp37IsGSA7vw4ujmO5w/tPQOlT13Up4uDm8/nb9fFc5hNQRqfTQaVSkSF+Ev8A/IE+LWZ8AaLZ1qYtI8nBAAAAAElFTkSuQmCC">
-    
+    <link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTYzMDhBMDk1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTYzMDhBMEE1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBNjMwOEEwNzU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBNjMwOEEwODU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvW2ukoAAAExSURBVHjajNJPSgMxFMfxyVCL9AJViqIVuhNEceEhxD9YELv0GC4t9Ab1BoIIFkUX4k4poitd6KJIr+DOjej4DfxS0pDOGPgwbV7ey5tJkizLEouxiJWkeCyj7vJSLzCDvX8UaGJ29M/rYBpdrOYk2w5PUBnleQXsqOICW5HkTfTc7pMK2LGNPow3Z3/fYzfsPI3s9KlO0qBAVbGxESswh0v8eHO/mpsPFxvXvjFmh8c3FrCPDxzZbtFGA2cYokxeLzyFRy0e4FAf7BUvuNLcQGueYh/xWMFMCXWcypIKungnVqCGB3zhRl99KHb+WjF7QrVJxzil3dbw5u34jnXFykX3wJ3OAZ6lhZK/oKiAO/tb3AWXaqxAKefe26RzPY1eJcm7B7ECG3qdfljA5f0JMAAl8rzP4xqFlQAAAABJRU5ErkJggg==">
+    <link rel="shortcut icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTYzMDhBMDk1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTYzMDhBMEE1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBNjMwOEEwNzU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBNjMwOEEwODU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvW2ukoAAAExSURBVHjajNJPSgMxFMfxyVCL9AJViqIVuhNEceEhxD9YELv0GC4t9Ab1BoIIFkUX4k4poitd6KJIr+DOjej4DfxS0pDOGPgwbV7ey5tJkizLEouxiJWkeCyj7vJSLzCDvX8UaGJ29M/rYBpdrOYk2w5PUBnleQXsqOICW5HkTfTc7pMK2LGNPow3Z3/fYzfsPI3s9KlO0qBAVbGxESswh0v8eHO/mpsPFxvXvjFmh8c3FrCPDxzZbtFGA2cYokxeLzyFRy0e4FAf7BUvuNLcQGueYh/xWMFMCXWcypIKungnVqCGB3zhRl99KHb+WjF7QrVJxzil3dbw5u34jnXFykX3wJ3OAZ6lhZK/oKiAO/tb3AWXaqxAKefe26RzPY1eJcm7B7ECG3qdfljA5f0JMAAl8rzP4xqFlQAAAABJRU5ErkJggg==">
     <link rel="stylesheet" href="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/themes/css/cartodb.css">
   <link rel="stylesheet" href="http://cartodb.github.io/odyssey.js/sandbox/css/slides.css">
   <script src="http://cartodb.github.io/odyssey.js/vendor/modernizr-2.6.2.min.js"></script>
@@ -244,217 +242,139 @@
 
 <script id="md_template" type="text/template">```
 -baseurl:"http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"
--title: "Conservation + Citizen Science + MAPS"
--author: "Stephen, for MaptimeSTL"
+-title: "GIS + Conservation Citizen Science"
+-author: "Stephen, for KEYS 4021"
 ```
-# Conservation + Citizen Science + MAPS
+#GIS for Citizen Science
 ```
 - center: [38.630790, -90.199614]
 - zoom: 17
 L.marker([38.630790, -90.199614]).actions.addRemove(S.map)
 ```
-- SOTMUS 2016   
-- Conservation + Examples   
-- Citizen Science + Examples   
-- Land Use and OSM   
-- CartoDB Community Lessons: **Odyssey.js** + **Tracking Seagulls**     
-- Resources   
-- Future topics
 
-# SOTMUS 2016
+# What we'll cover
 ```
 - center: [38.627656, -90.201949]
 - zoom: 16
 L.marker([38.627656, -90.201949]).actions.addRemove(S.map)
 ```
-- Dates    
-- Venues    
-- Pricing    
-- Logistics    
-- Partnerships    
-- Events    
+  - Maps and cartography
+  - GIS and Citizen Science
+  - Web map workflows
+  - Data collection and project design
+  - Introductory analysis and applications
+  - Resources to find out more
 
-# SOTMUS 2016
+# 
 ```
 - center: [38.627656, -90.201951]
 - zoom: 15
 L.marker([38.627656, -90.201949]).actions.addRemove(S.map)
 ```
-- Dates    
-- Venues    
-- Pricing    
-- Logistics    
-- Partnerships    
-- Events    
-- Team
+# Session 1 - The evolving nature of maps
+  - Maps + GIS
+  - GIS basics
+  - Tools for making maps
+  - Tools for collecting data
+  - Getting started with ArcGIS and CartoDB
 
-# Conservation + Citizen Science
+# Maps and GIS 
 ```
 - center: [-4.692925, 29.620091]
 - zoom: 5
 L.marker([-4.692925, 29.620091]).actions.addRemove(S.map)
 ```
- - [Jane Goodall](https://www.google.com/maps/about/behind-the-scenes/streetview/treks/gombe-tanzania/) says [GIS is great](http://video.esri.com/iframe/3662/000000/width/960/0/00:00:00)!   
- - Understanding geography is key to protecting it   
- - Observations at scale require observers at scale   
-[![Conservation Measures Partnership Open Standards](https://www.miradi.org/media/images/OS_V_3.0_with_title.focus-none.max-500x500.jpg)](http://www.conservationmeasures.org/)
+  - [Mapping fundamentals](http://www.icsm.gov.au/mapping/history.html)
+  - [GIS vs cartography](http://www.geog.ucsb.edu/~good/papers/474B.pdf)
+  - Applications to [conservation](http://www.gislounge.com/conservation-biology-and-gis/) [biology](http://www.esf.edu/efb/gibbs/solving/v1.pdf)
+  - Geocoding - Turning addresses into coordinates
+  - Coordinates - Latitude + Longitude
 
-# [Whale mAPP](http://www.whalemapp.org/)
+# Displaying maps 
 ```
 - center: [34.061494, -117.164511]
 - zoom: 6
 L.marker([34.061494, -117.164511]).actions.addRemove(S.map)
 ```
-[Lightning Talk](http://video.esri.com/watch/3061/lightning-talkwhale-mapp-citizen-scientists-contribute-and-map-marine-mammal-sightings)
+  - [Projection basics](http://support.esri.com/en/knowledgebase/GISDictionary/term/projectio)
+  - [Vector](http://gis.stackexchange.com/questions/57142/what-is-the-difference-between-vector-and-raster-data-models) vs [Rasters](http://www.gislounge.com/geodatabases-explored-vector-and-raster-data/)
+  - [Symbology](http://gis.stackexchange.com/questions/3046/are-there-any-international-standards-for-map-symbology)
+  - [Visualization techniques](https://www.youtube.com/watch?v=ulXv1I8lJfA)
 
-# [FrogWatch](https://www.aza.org/frogwatch/)
+# Using maps to tell stories 
 ```
 - center: [38.634402, -90.291006]
 - zoom: 7
 L.marker([38.634402, -90.291006]).actions.addRemove(S.map)
 ```
-[FieldScope](http://education.nationalgeographic.org/programs/fieldscope/)
-![Fieldscope](http://media.education.nationalgeographic.com/assets/photos/000/348/34851.jpg)
+  - [Story maps](http://storymaps.arcgis.com/en/)
+  - [Options](http://storymaps.arcgis.com/en/app-list/)
+  - [How to make a story map](http://storymaps.arcgis.com/en/how-to/)
+  - [Effective storytelling](http://storymaps.arcgis.com/en/five-principles/)
 
-# [iNaturalist](http://www.inaturalist.org/)
+# Cool tools we'll be using 
 ```
 - center: [37.796041, -122.346850]
 - zoom: 8
 L.marker([37.796041, -122.346850]).actions.addRemove(S.map)
 ```
-![Share with Fellow Naturalists](http://www.inaturalist.org/assets/homepage-how-share-5dd1b036e4a77767cff9d8f4b56ee390.svg)
+  - [ArcGIS Online](https://www.arcgis.com/home/)
+  - [GeoForm](https://www.arcgis.com/home/item.html?id=931653256fd24301a84fc77955914a82)
+  - [CartoDB](https://cartodb.com/)
+  - [Mapbox](https://www.mapbox.com/)
 
-# [iMapInvasives](http://www.imapinvasives.org/)
+# Cool tools we won't be using 
 ```
 - center: [42.652282, -73.748689]
 - zoom: 9
 L.marker([42.652282, -73.748689]).actions.addRemove(S.map)
 ```
-See an invasive species -> Plot its location 
-Six types of data   
-    1. Observation - who, what, when, where   
-    2. Assessment - detailed information about an observation   
-    3. Survey - planned search of an area to determine presence or absence of specific invasive species    
-    4. Treatment - information about treatment   
-    5. Infestation - information about a population   
-    6. Project - a way to group data   
+  - [ArcGIS](http://www.arcgis.com/features/)
+  - [QGIS](http://www.qgis.org/en/site/)
+  - [Leaflet](http://leafletjs.com/)
+  - [Google Maps](https://developers.google.com/maps/tutorials/)
+  - [R](http://spatialanalysis.co.uk/2010/09/rmaps/)
+  - [Survey123](http://survey123.esri.com/#/)
+  - [Collector](http://doc.arcgis.com/en/collector/)
+  - [GeoODK](http://geoodk.com/)
 
-# Land Cover + Land Use
+# Getting started 
 ```
 - center: [40.804231, -77.857528]
 - zoom: 10
 L.marker([40.804231, -77.857528]).actions.addRemove(S.map)
 ```
-- Land Cover: features that exist on the land's surface   
-- Land Use: socio-economic activity or function associated with an area of land   
-- Critical for conservation   
-- [National Databases available](http://www.mrlc.gov/)  
+  - [ArcGIS Developers](https://developers.arcgis.com/)
+  - [Make your first map with ArcGIS online](https://doc.arcgis.com/en/arcgis-online/create-maps/make-your-first-map.htm)
+  - [CartoDB](http://academy.cartodb.com/courses/beginners-course/making-your-first-map/)
+  - [Mapbox](https://www.mapbox.com/help/make-your-first-map/)
 
-# Open Street Map
+
+# Next time
 ```
 - center: [30.989486, -43.387915]
 - zoom: 3
 ```  
-- [Environmental OSM](http://wiki.openstreetmap.org/wiki/Environmental_OSM)      
-- [leisure=nature_reserve]   
-- [boundary=protected_area]   
-- [Proposed feature](http://wiki.openstreetmap.org/wiki/Talk:Proposal_process)/[conservation](http://wiki.openstreetmap.org/wiki/Talk:Proposed_features/conservation) (currently [inactive](http://wiki.openstreetmap.org/wiki/Proposed_features/conservation))   
-- Mapping [invasive non-native species](http://wiki.openstreetmap.org/wiki/Invasive_Non-Native_Species)
+  - Working with GIS data  
+  - GIS projects for citizen science  
+  - Data collection methods    
+  - Working with GeoForms   
+  - Making story maps    
 
-# [Odyssey JS](http://cartodb.github.io/odyssey.js/)
+# For next time
 ```
 - center: [40.414353, -3.706782]
 - zoom: 11
 L.marker([40.414353, -3.706782]).actions.addRemove(S.map)
 ```
-"A simple way for journalists, designers, and creators to weave interactive stories."
+  - Choose and complete a tutorial ([ArcGIS](http://doc.arcgis.com/en/arcgis-online/), [CartoDB](http://academy.cartodb.com/), or [Mapbox](https://www.mapbox.com/help/))
+  - Find and explore [a conservation project](http://environment.yale.edu/blog/2014/12/20-new-and-powerful-conservation-tools/) that involves [mapping or GIS](http://blog.cartodb.com/categories/map-of-the-week/)
+  - Find a story compellingly [told with maps](http://www.esri.com/products/maps-we-love)
 
-# Odyssey.js Demo + Tutorial
+# Questions?   
 ```
 - center: [37.426483, -122.172863]
 - zoom: 16
 L.marker([37.426483, -122.172863]).actions.addRemove(S.map)
 ```
-[Using CartoDB and Odyssey.js](http://mapninja.github.io/CartoDB_Odyssey_Tutorial_for_Story_Maps/) by Stace Maples at the Stanford Geospatial Center
-
-# Seagulls
-```
-- center: [50.842127, 4.334159]
-- zoom: 12
-L.marker([50.842127, 4.334159]).actions.addRemove(S.map)
-```
- [Visualizing bird tracking data](http://lifewatch.inbo.be/blog/posts/cartodb-tracking-data-tutorial.html) with CartoDB
-
-# Learn more
-```
-- center: [38.6241, -90.1853]
-- zoom: 9
-```
-  - Lots of [cool](http://bl.ocks.org/anonymous/raw/7d67c4ef3348192da613/) [use](http://bl.ocks.org/anonymous/raw/769c7b6f9d7b4755d56a/) [cases](http://jonahadkins.github.io/virginia-beaches/)   
-  - Drop GA script tag and unnecessary links   
-  - Easy to customize (increase slide opacity and font size)
-
-# Resources
-```
-- center: [38.628010, -90.190185]
-- zoom: 10
-L.marker([38.628010, -90.190185]).actions.addRemove(S.map)
-```
-- [GIS Lounge](http://www.gislounge.com/conservation-biology-and-gis/)   
-- [Cool list from Yale blog](http://environment.yale.edu/blog/2014/12/20-new-and-powerful-conservation-tools/)   
-- [Conservation GIS](https://www.e-education.psu.edu/geog587/) from Penn State   
-- [Conservation GIS projects at the National Zoo](https://nationalzoo.si.edu/SCBI/ConservationGIS/projects/Smithsonian/GISprojects.cfm)   
-- [Society for Conservation GIS](https://www.scgis.org/)   
-- [UNEP World Conservation Monitoring Centre](http://www.unep-wcmc.org/featured-projects/mapping-the-worlds-special-places)   
-- [CartoDB’s Map Academy](http://academy.cartodb.com/)   
-- [Andrew Hill webinar](http://consbio.org/products/webinars/amazing-uses-cartodb)   
-- [ESRI’s Best Practices for Wildlife Conservation](http://www.esri.com/library/bestpractices/wildlife-conservation.pdf)   
-- [Maptime lessons and resources](http://maptime.io/lessons-resources/)   
-
-# Future Maptimes?
-```
-- center: [38.628840, -90.192502]
-- zoom: 12
-L.marker([38.628840, -90.192502]).actions.addRemove(S.map)
-```
-  - Map Accessibility Guidelines   
-  - FixWikiMaps   
-  - CartoCSS + the MapBoxSTL "gateway" theme   
-  - Turj.js and online geospatial analysis   
-  - Esri Story Maps   
-  - DIY Geo Apps and other ESRI Moocs   
-  - 3D maps - open source and otherwise   
-  - Rock the docs   
-  - Mapathons   
-  - Historic Maps   
-  - Social mapping   
-  - Maps for education   
-  - Maps and the census   
-  - Maps and GitHub - the making of maptime.io/maptimestl   
-  - Maps and games   
-  - Social network analysis and GIS   
-  - QGIS   
-  - Roadmap to OSM mastery   
-  - CartoDB Academy series   
-  - PostgreSQL + PostGIS
-
-# HAVE FUN!
-```
-- center: [40.414353, -3.706782]
-- zoom: 3
-L.marker([38.630790, -90.199614]).actions.addRemove(S.map)
-L.marker([38.627656, -90.201949]).actions.addRemove(S.map)
-L.marker([-4.692925, 29.620091]).actions.addRemove(S.map)
-L.marker([34.061494, -117.164511]).actions.addRemove(S.map)
-L.marker([38.634402, -90.291006]).actions.addRemove(S.map)
-L.marker([37.796041, -122.346850]).actions.addRemove(S.map)
-L.marker([42.652282, -73.748689]).actions.addRemove(S.map)
-L.marker([40.804231, -77.857528]).actions.addRemove(S.map)
-L.marker([40.414353, -3.706782]).actions.addRemove(S.map)
-L.marker([37.426483, -122.172863]).actions.addRemove(S.map)
-L.marker([50.842127, 4.334159]).actions.addRemove(S.map)
-L.marker([38.628010, -90.190185]).actions.addRemove(S.map)
-L.marker([38.628840, -90.192502]).actions.addRemove(S.map)
-```
-
 </script></body></html>
