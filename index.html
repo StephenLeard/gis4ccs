@@ -289,11 +289,11 @@ L.marker([48.068867, -123.737342]).actions.addRemove(S.map)
 L.marker([51.949793, 4.535886]).actions.addRemove(S.map)
 ```
   - Cartography + GIS   
-  - [Projections](https://xkcd.com/977/), coordinates, raster vs [vector](http://maptime.io/geodata/#24), symbology   
+  - [Projections](https://xkcd.com/977/), [coordinates](https://en.wikipedia.org/wiki/Decimal_degrees), [raster](https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Srtm_ramp2.world.21600x10800.jpg/1280px-Srtm_ramp2.world.21600x10800.jpg) vs [vector](http://maptime.io/geodata/#24), [symbology](http://www.esri.com/news/arcuser/0911/files/mapchecklist.pdf)   
   - Features, layers, attributes, imagery   
   - Designing and serving [maps on the web](http://maptime.io/anatomy-of-a-web-map/#84)   
 
-# [Open Street Map](http://www.openstreetmap.org/)
+# Open Street Map
 ```
 - center: [48.870615, 16.669168]
 - zoom: 10
@@ -327,22 +327,34 @@ L.marker([51.949793, 4.535886]).actions.addRemove(S.map)
 - center: [7.437450, 168.518245]
 - zoom: 11
 ```
-  - Data representing location   
-  - Physical (roads), abstract (county lines), and temporal (animal sightings)   
-  - [Shapefiles](http://wiki.openstreetmap.org/wiki/Shapefiles), [kml](https://developers.google.com/kml/), [geojson](http://geojson.io/)    
+  - Data representing location    
+  - Physical: roads, mountains   
+  - Abstract: county lines, habitats   
+  - Temporal: storms, animal sightings   
+  - Many formats: [shapefiles](http://wiki.openstreetmap.org/wiki/Shapefiles), [kml](https://developers.google.com/kml/), [geojson](http://geojson.io/)    
 
 # Geodata collection
 ```
 - center: [7.437450, 168.518245]
 - zoom: 6
-```  
-
+```
+  - Time and Cost   
+  - Accuracy and Precision   
+  - Coordination and Consistency   
+  - Ask: goals, operations, data   
+  - Acquire: what, where, when   
 
 # Geodata collection on the web: GeoForms
 ```
 - center: [7.437450, 168.518245]
 - zoom: 3
-```        
+```
+  - [Feature services](http://server.arcgis.com/en/server/latest/publish-services/linux/what-is-a-feature-service-.htm) + [web maps](http://doc.arcgis.com/en/arcgis-online/reference/what-is-web-map.htm)   
+  - [Publishing app example (pg. 2)](http://diygeoapps.maps.arcgis.com/apps/GeoForm/index.html?appid=ca3fe2b4cca148bb83c7f2ee383b3c58)   
+  - [Collection app example (pg. 4)](http://diygeoapps.maps.arcgis.com/apps/SummaryViewer/index.html?appid=adbf97131fd34655878b93051e2b47b3)   
+  - [Map extent definition](http://support.esri.com/en/knowledgebase/GISDictionary/term/map%20extent)   
+  - [Updating hosted feature service schema JSON (advanced)](http://blogs.esri.com/esri/arcgis/files/2014/10/How-to-Update-Hosted-Feature-Service-Schemas1.pdf)   
+
 
 # The Geographic Approach   
 ```
