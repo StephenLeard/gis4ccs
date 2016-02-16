@@ -1,0 +1,395 @@
+<!doctype><html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Conservation + Citizen Science + MAPS</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Icons-->
+    <link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTYzMDhBMDk1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTYzMDhBMEE1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBNjMwOEEwNzU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBNjMwOEEwODU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvW2ukoAAAExSURBVHjajNJPSgMxFMfxyVCL9AJViqIVuhNEceEhxD9YELv0GC4t9Ab1BoIIFkUX4k4poitd6KJIr+DOjej4DfxS0pDOGPgwbV7ey5tJkizLEouxiJWkeCyj7vJSLzCDvX8UaGJ29M/rYBpdrOYk2w5PUBnleQXsqOICW5HkTfTc7pMK2LGNPow3Z3/fYzfsPI3s9KlO0qBAVbGxESswh0v8eHO/mpsPFxvXvjFmh8c3FrCPDxzZbtFGA2cYokxeLzyFRy0e4FAf7BUvuNLcQGueYh/xWMFMCXWcypIKungnVqCGB3zhRl99KHb+WjF7QrVJxzil3dbw5u34jnXFykX3wJ3OAZ6lhZK/oKiAO/tb3AWXaqxAKefe26RzPY1eJcm7B7ECG3qdfljA5f0JMAAl8rzP4xqFlQAAAABJRU5ErkJggg==">
+    <link rel="shortcut icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTYzMDhBMDk1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTYzMDhBMEE1OTgwMTFFMEJGRUNCMjE0NzFCQzg1QTkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBNjMwOEEwNzU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBNjMwOEEwODU5ODAxMUUwQkZFQ0IyMTQ3MUJDODVBOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvW2ukoAAAExSURBVHjajNJPSgMxFMfxyVCL9AJViqIVuhNEceEhxD9YELv0GC4t9Ab1BoIIFkUX4k4poitd6KJIr+DOjej4DfxS0pDOGPgwbV7ey5tJkizLEouxiJWkeCyj7vJSLzCDvX8UaGJ29M/rYBpdrOYk2w5PUBnleQXsqOICW5HkTfTc7pMK2LGNPow3Z3/fYzfsPI3s9KlO0qBAVbGxESswh0v8eHO/mpsPFxvXvjFmh8c3FrCPDxzZbtFGA2cYokxeLzyFRy0e4FAf7BUvuNLcQGueYh/xWMFMCXWcypIKungnVqCGB3zhRl99KHb+WjF7QrVJxzil3dbw5u34jnXFykX3wJ3OAZ6lhZK/oKiAO/tb3AWXaqxAKefe26RzPY1eJcm7B7ECG3qdfljA5f0JMAAl8rzP4xqFlQAAAABJRU5ErkJggg==">
+    <link rel="stylesheet" href="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/themes/css/cartodb.css">
+  <link rel="stylesheet" href="http://cartodb.github.io/odyssey.js/sandbox/css/slides.css">
+  <script src="http://cartodb.github.io/odyssey.js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+  <style>
+    #slides_container {background-color: rgba(255,255,255,0.9)!important;width: 480px!important;}
+    p {font-size: 24px!important;line-height: 32px!important;}
+    #slides_container img {width:200px!important;height:200px!important;}
+  </style>
+  <div id="map" style="width: 100%; height: 100%;"></div>
+
+  <div id="slides_container" style="display:block;">
+    <div id="dots"></div>
+
+    <div id="slides"></div>
+
+    <ul id="navButtons">
+      <li><a class="prev"></a></li>
+      <li><a class="next"></a></li>
+    </ul>
+  </div>
+
+  <div id="credits">
+    <span class="title" id="title">Title</span>
+    <span class="author"><strong id="author">By Name using</strong> <a href="http://cartodb.github.io/odyssey.js/">Odyssey.js</a><span>
+  </span></span></div>
+
+  <script src="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/cartodb.js"></script>
+  <script src="http://cartodb.github.io/odyssey.js/dist/odyssey.js" charset="UTF-8"></script>
+
+  <script>
+    var resizePID;
+
+    function clearResize() {
+      clearTimeout(resizePID);
+      resizePID = setTimeout(function() { adjustSlides(); }, 100);
+    }
+
+    if (!window.addEventListener) {
+      window.attachEvent("resize", function load(event) {
+        clearResize();
+      });
+    } else {
+      window.addEventListener("resize", function load(event) {
+        clearResize();
+      });
+    }
+
+    function adjustSlides() {
+      var container = document.getElementById("slides_container"),
+          slide = document.querySelectorAll('.selected_slide')[0];
+
+      if (slide) {
+        if (slide.offsetHeight+169+40+80 >= window.innerHeight) {
+          container.style.bottom = "80px";
+
+          var h = container.offsetHeight;
+
+          slide.style.height = h-169+"px";
+          slide.classList.add("scrolled");
+        } else {
+          container.style.bottom = "auto";
+          container.style.minHeight = "0";
+
+          slide.style.height = "auto";
+          slide.classList.remove("scrolled");
+        }
+      }
+    }
+
+    var resizeAction = O.Action(function() {
+      function imageLoaded() {
+        counter--;
+
+        if (counter === 0) {
+          adjustSlides();
+        }
+      }
+      var images = $('img');
+      var counter = images.length;
+
+      images.each(function() {
+        if (this.complete) {
+          imageLoaded.call( this );
+        } else {
+          $(this).one('load', imageLoaded);
+        }
+      });
+    });
+
+    function click(el) {
+      var element = O.Core.getElement(el);
+      var t = O.Trigger();
+
+      // TODO: clean properly
+      function click() {
+        t.trigger();
+      }
+
+      if (element) element.onclick = click;
+
+      return t;
+    }
+
+    O.Template({
+      init: function() {
+        var seq = O.Triggers.Sequential();
+
+        var baseurl = this.baseurl = 'http://{s}.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
+        var map = this.map = L.map('map').setView([0, 0.0], 4);
+        var basemap = this.basemap = L.tileLayer(baseurl, {
+          attribution: 'data OSM - map CartoDB'
+        }).addTo(map);
+
+        // enanle keys to move
+        O.Keys().on('map').left().then(seq.prev, seq)
+        O.Keys().on('map').right().then(seq.next, seq)
+
+        click(document.querySelectorAll('.next')).then(seq.next, seq)
+        click(document.querySelectorAll('.prev')).then(seq.prev, seq)
+
+        var slides = O.Actions.Slides('slides');
+        var story = O.Story()
+
+        this.story = story;
+        this.seq = seq;
+        this.slides = slides;
+        this.progress = O.UI.DotProgress('dots').count(0);
+      },
+
+      update: function(actions) {
+        var self = this;
+
+        if (!actions.length) return;
+
+        this.story.clear();
+
+        if (this.baseurl && (this.baseurl !== actions.global.baseurl)) {
+          this.baseurl = actions.global.baseurl || 'http://0.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
+
+          this.basemap.setUrl(this.baseurl);
+        }
+
+        if (this.cartoDBLayer && ("http://"+self.cartoDBLayer.options.user_name+".cartodb.com/api/v2/viz/"+self.cartoDBLayer.options.layer_definition.stat_tag+"/viz.json" !== actions.global.vizjson)) {
+          this.map.removeLayer(this.cartoDBLayer);
+
+          this.cartoDBLayer = null;
+          this.created = false;
+        }
+
+        if (actions.global.vizjson && !this.cartoDBLayer) {
+          if (!this.created) { // sendCode debounce < vis loader
+            cdb.vis.Loader.get(actions.global.vizjson, function(vizjson) {
+              self.map.fitBounds(vizjson.bounds);
+
+              cartodb.createLayer(self.map, vizjson)
+                .done(function(layer) {
+                  self.cartoDBLayer = layer;
+
+                  var sublayer = layer.getSubLayer(0),
+                      layer_name = layer.layers[0].options.layer_name,
+                      filter = actions.global.cartodb_filter ? " WHERE "+actions.global.cartodb_filter : "";
+
+                  sublayer.setSQL("SELECT * FROM "+layer_name+filter)
+
+                  self.map.addLayer(layer);
+
+                  self._resetActions(actions);
+                }).on('error', function(err) {
+                  console.log("some error occurred: " + err);
+                });
+            });
+
+            this.created = true;
+          }
+
+          return;
+        }
+
+        this._resetActions(actions);
+      },
+
+      _resetActions: function(actions) {
+        // update footer title and author
+        var title_ = actions.global.title === undefined ? '' : actions.global.title,
+            author_ = actions.global.author === undefined ? 'Using' : 'By '+actions.global.author+' using';
+
+        document.getElementById('title').innerHTML = title_;
+        document.getElementById('author').innerHTML = author_;
+        document.title = title_ + " | " + author_ +' Odyssey.js';
+
+        var sl = actions;
+
+        document.getElementById('slides').innerHTML = ''
+        this.progress.count(sl.length);
+
+        // create new story
+        for(var i = 0; i < sl.length; ++i) {
+          var slide = sl[i];
+          var tmpl = "<div class='slide' style='diplay:none'>";
+
+          tmpl += slide.html();
+          tmpl += "</div>";
+          document.getElementById('slides').innerHTML += tmpl;
+
+          this.progress.step(i).then(this.seq.step(i), this.seq)
+
+          var actions = O.Parallel(
+            this.slides.activate(i),
+            slide(this),
+            this.progress.activate(i),
+            resizeAction
+          );
+
+          actions.on("finish.app", function() {
+            adjustSlides();
+          });
+
+          this.story.addState(
+            this.seq.step(i),
+            actions
+          )
+        }
+
+        this.story.go(this.seq.current());
+      },
+
+      changeSlide: function(n) {
+        this.seq.current(n);
+      }
+    });
+  </script>
+
+<script id="md_template" type="text/template">```
+-baseurl:"https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24"
+-title: "GIS + Conservation + Citizen Science"
+-author: "Stephen, for KEYS 4021"
+```
+# GIS + Conservation + Citizen Science
+```
+- center: [38.588824, -90.346102]
+- zoom: 13
+L.marker([38.588824, -90.346102]).actions.addRemove(S.map)
+```
+![Werner projection](https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Werner_projection_SW.jpg/300px-Werner_projection_SW.jpg)
+
+# What we'll cover
+```
+- center: [38.613278, -90.310243]
+- zoom: 11
+L.marker([38.588824, -90.346102]).actions.addRemove(S.map)
+```
+  - Maps and cartography   
+  - Web map workflows   
+  - GIS and Citizen Science   
+  - Data collection and project design   
+  - Introductory analysis and applications   
+  - Resources to find out more   
+
+# Session 2 - Data, design, and citizen science 
+```
+- center: [38.634839, -90.291028]
+- zoom: 9
+L.marker([38.588824, -90.346102]).actions.addRemove(S.map)
+```
+  - Refresher + OSM intro   
+  - GIS Citizen Science projects   
+  - Geodata: types + formats   
+  - Data Collection: GeoForms   
+  - Exploring available data   
+
+# Last Thursday
+```
+- center: [45.033289, -132.395518]
+- zoom: 2
+L.marker([65.640033, 65.763093]).actions.addRemove(S.map)
+L.marker([-4.700043, 29.615830]).actions.addRemove(S.map)
+L.marker([48.068867, -123.737342]).actions.addRemove(S.map)
+L.marker([51.949793, 4.535886]).actions.addRemove(S.map)
+```
+  - Cartography + GIS   
+  - [Projections](https://xkcd.com/977/), coordinates, raster vs [vector](http://maptime.io/geodata/#24), symbology   
+  - Features, layers, attributes, imagery   
+  - Designing and serving [maps on the web](http://maptime.io/anatomy-of-a-web-map/#84)   
+
+# Open Street Map
+```
+- center: [48.870615, 16.669168]
+- zoom: 10
+```
+  - "A collaborative project to create a free editable map of the world"   
+  - "Wikipedia of maps"   
+  - [Data model](https://wiki.openstreetmap.org/wiki/Elements): [Nodes](https://wiki.openstreetmap.org/wiki/Node), [ways](https://wiki.openstreetmap.org/wiki/Way), [relations](https://wiki.openstreetmap.org/wiki/Relation), [tags](https://wiki.openstreetmap.org/wiki/Tags)   
+  - [Lots of](http://maptime.io/lessons-resources/) [ways](http://maptime.io/osm-101/) to [learn](http://learnosm.org/) [more](https://wiki.openstreetmap.org/wiki/Beginners%27_guide)    
+
+# GIS + Citizen Science
+```
+- center: [-2.785780, -56.6253770]
+- zoom: 11
+```
+  - Conducting fieldwork and sharing observations   
+  - Exploring data and asking questions  
+  - Participating in research and documenting processes      
+
+# GIS + Citizen Science: examples
+```
+- center: [-2.785780, -56.6253775]
+- zoom: 9
+```
+  - [Whale mAPP](http://www.whalemapp.org/): [Lei Lani Stelle](http://video.esri.com/watch/3061/lightning-talkwhale-mapp-citizen-scientists-contribute-and-map-marine-mammal-sightings)   
+  - [Frogwatch](https://www.aza.org/frogwatch/) + [Fieldscope](http://education.nationalgeographic.org/programs/fieldscope/)   
+  - [iNaturalist](http://www.inaturalist.org/): [Scott Laurie](https://www.youtube.com/watch?v=tIX_ky4tfr4)      
+  - [Geo for Good](http://geoforgood2015.earthoutreach.org/talk-recordings)   
+
+# Geodata
+```
+- center: [7.437450, 168.518245]
+- zoom: 11
+```
+  - Data representing location   
+  - Physical (roads), abstract (county lines), and temporal (animal sightings)   
+  - [Shapefiles](http://wiki.openstreetmap.org/wiki/Shapefiles), [kml](https://developers.google.com/kml/), [geojson](http://geojson.io/)    
+
+# Geodata collection
+```
+- center: [7.437450, 168.518245]
+- zoom: 6
+```  
+
+
+# Geodata collection on the web: GeoForms
+```
+- center: [7.437450, 168.518245]
+- zoom: 3
+```        
+
+# The Geographic Approach   
+```
+- center: [30.507131,-130.5198438]
+- zoom: 5
+```
+  - Ask -> Acquire -> Explore -> Analyze -> Act    
+  - Create and collect data   
+  - Explore and challenge data   
+  - Apply understanding of data    
+
+# Using available data
+```
+- center: [36.1571614,-109.162422]
+- zoom: 5
+```
+  - Data collection is tough, and lots of great data is already available: use it!   
+  - [GBIF](http://www.gbif.org/)   
+  - [National Map](http://viewer.nationalmap.gov/launch/)   
+  - [Living Atlas of the World](http://doc.arcgis.com/en/living-atlas/)   
+  - [CartoDB geospatial resources](http://docs.cartodb.com/tips-and-tricks/mappable-data/)   
+
+
+# Next time
+```
+- center: [38.3948372,-93.4300001]
+- zoom: 5
+```
+  - Introductory analysis and applications   
+  - Visualizing animal tracking data  
+  - Creating a story map with CartoDB  
+  - Resources + next steps    
+
+# For next time
+```
+- center: [38.588824, -90.346102]
+- zoom: 6
+```
+  - Complete [Online Mapping for Beginners](http://academy.cartodb.com/courses/beginners-course/) + [Introduction to Map Design](http://academy.cartodb.com/courses/design-for-beginners/)   
+  - Find and explore a free spatial dataset    
+  - Contribute to Open Street Map!   
+  - Create a dataset with [geojson.io](http://geojson.io/)   
+
+# Questions?   
+```
+- center: [38.588824, -90.346102]
+- zoom: 8
+L.marker([38.588824, -90.346102]).actions.addRemove(S.map)
+``` 
+</script></body></html>
